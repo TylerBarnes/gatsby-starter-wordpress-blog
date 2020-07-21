@@ -43,9 +43,9 @@ const BlogIndex = ({ data, location, pageContext }) => {
 
       <NextPrev
         prevLink={pageContext.previousArchivePath}
-        prevText="Previous post"
+        prevText="Previous page"
         nextLink={pageContext.nextArchivePath}
-        nextText="Next post"
+        nextText="Next page"
       />
     </Layout>
   )
