@@ -5,7 +5,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-wordpress`,
       options: {
-        url: `https://dev-gatsby-source-wordpress-v4.pantheonsite.io/graphql`,
+        url: `https://wpgatsbydemo.wpengine.com/graphql`,
         reports: {
           templateRouting: true,
         },
