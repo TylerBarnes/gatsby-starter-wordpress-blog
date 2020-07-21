@@ -6,7 +6,7 @@ import Layout from "src/components/layout"
 import SEO from "src/components/seo"
 import { rhythm } from "src/utils/typography"
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.wp.allSettings.generalSettingsTitle
   const posts = data.allWpPost.nodes
 
@@ -39,6 +39,13 @@ const BlogIndex = ({ data, location }) => {
           </article>
         )
       })}
+      {!pageContext.isFirstArchivePage && pageContext.previousArchivePath ? (
+        <Link to={pageContext.previousArchivePath}>previous</Link>
+      ) : null}
+      {` `}
+      {!pageContext.isLastArchivePage && pageContext.nextArchivePath ? (
+        <Link to={pageContext.nextArchivePath}>next</Link>
+      ) : null}
     </Layout>
   )
 }
