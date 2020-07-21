@@ -5,9 +5,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-wordpress`,
       options: {
-        url: `http://brandnew.local/graphql`,
+        url: `https://dev-gatsby-source-wordpress-v4.pantheonsite.io/graphql`,
         reports: {
           templateRouting: true,
+        },
+        type: {
+          Post: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  50
+                : // and we don't actually need more than 500 in production for this particular site
+                  500,
+          },
         },
       },
     },
