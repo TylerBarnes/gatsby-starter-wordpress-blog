@@ -33,12 +33,14 @@ const BlogPostTemplate = ({ data, location }) => {
           >
             {post.date}
           </p>
-          <Img
-            fluid={post.featuredImage.node.localFile.childImageSharp.fluid}
-            style={{
-              marginBottom: rhythm(1),
-            }}
-          />
+          {!!post?.featuredImage?.node?.localFile?.childImageSharp && (
+            <Img
+              fluid={post.featuredImage.node.localFile.childImageSharp.fluid}
+              style={{
+                marginBottom: rhythm(1),
+              }}
+            />
+          )}
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.content }} />
         <hr
