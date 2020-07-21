@@ -46,14 +46,21 @@ const BlogIndex = ({ data, location }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query PostArchive(
+    $archiveNodeIds: [String]!
+    $sortOrder: [SortOrderEnum]!
+    $sortFields: [WpPostFieldsEnum]!
+  ) {
     wp {
       allSettings {
         generalSettingsTitle
       }
     }
 
-    allWpPost(sort: { fields: date, order: DESC }, limit: 10) {
+    allWpPost(
+      filter: { id: { in: $archiveNodeIds } }
+      sort: { order: $sortOrder, fields: $sortFields }
+    ) {
       nodes {
         id
         uri
