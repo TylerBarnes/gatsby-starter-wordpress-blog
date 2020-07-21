@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Bio from "src/components/bio"
 import Layout from "src/components/layout"
@@ -32,6 +33,12 @@ const BlogPostTemplate = ({ data, location }) => {
           >
             {post.date}
           </p>
+          <Img
+            fluid={post.featuredImage.node.localFile.childImageSharp.fluid}
+            style={{
+              marginBottom: rhythm(1),
+            }}
+          />
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.content }} />
         <hr
