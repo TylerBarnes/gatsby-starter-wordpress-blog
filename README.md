@@ -30,7 +30,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
     Navigate into your new site’s directory and start it up.
 
     ```shell
-    cd my-blog-starter/
+    cd my-wordpress-blog-starter/
     gatsby develop
     ```
 
@@ -91,6 +91,10 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 - **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
 - **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+
+## 🎓 Learning WordPress with Gatsby
+
+Need to know more about how the WordPress source plugin works? Need to set up Previews or understand more about plugin options? Check out the [`gatsby-source-wordpress-experimental` docs](https://github.com/gatsbyjs/gatsby-source-wordpress-experimental#readme) for information about data sourcing or the [`gatsby-plugin-wordpress` README](https://github.com/TylerBarnes/gatsby-plugin-wordpress#readme) for information about page creation and templating.
 
 ## 💫 Deploy
 
