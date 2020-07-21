@@ -6,36 +6,19 @@
  */
 
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { graphql } from "gatsby"
 
-import { rhythm } from "../utils/typography"
+import { rhythm } from "src/utils/typography"
 
-const Bio = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-    }
-  `)
+const Bio = ({ author }) => {
+  if (!author) {
+    return null
+  }
 
-  const { author, social } = data.site.siteMetadata
+  if (author.node) {
+    author = author.node
+  }
+
   return (
     <div
       style={{
@@ -43,28 +26,35 @@ const Bio = () => {
         marginBottom: rhythm(2.5),
       }}
     >
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author.name}
+      <img
+        fixed={author.avatar.url}
+        alt={`${author.name}'s avatar`}
         style={{
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
           minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
           borderRadius: `50%`,
         }}
       />
       <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
+        Written by <strong>{author.name}</strong> {author.description}
+        {/* {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
           You should follow him on Twitter
-        </a>
+        </a> */}
       </p>
     </div>
   )
 }
 
 export default Bio
+
+export const fragment = graphql`
+  fragment WpAuthor on WpUser {
+    name
+    description
+    avatar {
+      url
+    }
+  }
+`

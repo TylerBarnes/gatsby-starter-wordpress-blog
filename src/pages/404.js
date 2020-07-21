@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "src/components/layout"
+import SEO from "src/components/seo"
 
 const NotFoundPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+  const siteTitle = data.wp.allSettings.generalSettingsTitle
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -20,9 +20,9 @@ export default NotFoundPage
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
+    wp {
+      allSettings {
+        generalSettingsTitle
       }
     }
   }

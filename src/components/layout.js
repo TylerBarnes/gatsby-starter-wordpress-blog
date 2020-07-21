@@ -1,9 +1,23 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm, scale } from "src/utils/typography"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ location, children }) => {
+  const {
+    wp: {
+      allSettings: { generalSettingsTitle },
+    },
+  } = useStaticQuery(graphql`
+    {
+      wp {
+        allSettings {
+          generalSettingsTitle
+        }
+      }
+    }
+  `)
+
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
@@ -23,7 +37,7 @@ const Layout = ({ location, title, children }) => {
           }}
           to={`/`}
         >
-          {title}
+          {generalSettingsTitle}
         </Link>
       </h1>
     )
@@ -42,7 +56,7 @@ const Layout = ({ location, title, children }) => {
           }}
           to={`/`}
         >
-          {title}
+          {generalSettingsTitle}
         </Link>
       </h3>
     )
