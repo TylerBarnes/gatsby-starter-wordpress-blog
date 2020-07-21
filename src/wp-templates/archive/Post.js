@@ -5,6 +5,7 @@ import Bio from "src/components/bio"
 import Layout from "src/components/layout"
 import SEO from "src/components/seo"
 import { rhythm } from "src/utils/typography"
+import NextPrev from "src/components/next-prev"
 
 const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.wp.allSettings.generalSettingsTitle
@@ -39,13 +40,13 @@ const BlogIndex = ({ data, location, pageContext }) => {
           </article>
         )
       })}
-      {!pageContext.isFirstArchivePage && pageContext.previousArchivePath ? (
-        <Link to={pageContext.previousArchivePath}>previous</Link>
-      ) : null}
-      {` `}
-      {!pageContext.isLastArchivePage && pageContext.nextArchivePath ? (
-        <Link to={pageContext.nextArchivePath}>next</Link>
-      ) : null}
+
+      <NextPrev
+        prevLink={pageContext.previousArchivePath}
+        prevText="Previous post"
+        nextLink={pageContext.nextArchivePath}
+        nextText="Next post"
+      />
     </Layout>
   )
 }

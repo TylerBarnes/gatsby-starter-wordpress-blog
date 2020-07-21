@@ -1,17 +1,18 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Bio from "src/components/bio"
 import Layout from "src/components/layout"
 import SEO from "src/components/seo"
 import { rhythm, scale } from "src/utils/typography"
+import NextPrev from "src/components/next-prev"
 
 const BlogPostTemplate = ({ data, location }) => {
   const { post, nextPost, previousPost } = data
 
   return (
     <Layout location={location}>
-      <SEO title={post.title} description={post.description || post.excerpt} />
+      <SEO title={post.title} description={post.excerpt} />
       <article>
         <header>
           <h1
@@ -43,32 +44,12 @@ const BlogPostTemplate = ({ data, location }) => {
         </footer>
       </article>
 
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previousPost && (
-              <Link to={previousPost.uri} rel="prev">
-                ← {previousPost.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {nextPost && (
-              <Link to={nextPost.uri} rel="next">
-                {nextPost.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <NextPrev
+        prevLink={previousPost?.uri}
+        prevText={previousPost?.title}
+        nextLink={nextPost?.uri}
+        nextText={nextPost?.title}
+      />
     </Layout>
   )
 }
@@ -76,7 +57,7 @@ const BlogPostTemplate = ({ data, location }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostById(
+  query BlogPostByIdWithNextPrev(
     $id: String!
     $nextSinglePageId: String
     $previousSinglePageId: String
@@ -90,6 +71,17 @@ export const pageQuery = graphql`
       author {
         node {
           ...WpAuthor
+        }
+      }
+      featuredImage {
+        node {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600, quality: 90) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }

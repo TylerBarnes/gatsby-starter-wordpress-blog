@@ -27,7 +27,7 @@ const Bio = ({ author }) => {
       }}
     >
       <img
-        fixed={author.avatar.url}
+        src={author.avatar.url}
         alt={`${author.name}'s avatar`}
         style={{
           marginRight: rhythm(1 / 2),
