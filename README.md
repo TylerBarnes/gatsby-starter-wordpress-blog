@@ -22,7 +22,7 @@ _Have another more specific idea? You may want to check out our vibrant collecti
 
     ```shell
     # create a new Gatsby site using the blog starter
-    gatsby new my-blog-starter https://github.com/gatsbyjs/gatsby-starter-blog
+    gatsby new my-wordpress-blog-starter https://github.com/TylerBarnes/gatsby-starter-wordpress-blog
     ```
 
 1.  **Start developing.**
