@@ -6,13 +6,14 @@ import { rhythm, scale } from "src/utils/typography"
 const Layout = ({ location, children }) => {
   const {
     wp: {
-      allSettings: { generalSettingsTitle },
+      generalSettings: { title, description },
     },
   } = useStaticQuery(graphql`
     {
       wp {
-        allSettings {
-          generalSettingsTitle
+        generalSettings {
+          title
+          description
         }
       }
     }
@@ -23,23 +24,26 @@ const Layout = ({ location, children }) => {
 
   if (location.pathname === rootPath) {
     header = (
-      <h1
-        style={{
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-        <Link
+      <>
+        <h1
           style={{
-            boxShadow: `none`,
-            color: `inherit`,
+            ...scale(1.5),
+            marginBottom: rhythm(1.5),
+            marginTop: 0,
           }}
-          to={`/`}
         >
-          {generalSettingsTitle}
-        </Link>
-      </h1>
+          <Link
+            style={{
+              boxShadow: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h1>
+        <h2>{description}</h2>
+      </>
     )
   } else {
     header = (
@@ -56,7 +60,7 @@ const Layout = ({ location, children }) => {
           }}
           to={`/`}
         >
-          {generalSettingsTitle}
+          {title}
         </Link>
       </h3>
     )

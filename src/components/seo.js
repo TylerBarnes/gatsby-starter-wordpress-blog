@@ -12,23 +12,24 @@ import { useStaticQuery, graphql } from "gatsby"
 
 const SEO = ({ description, lang, meta, title }) => {
   const {
-    wp: { allSettings },
+    wp: { generalSettings },
   } = useStaticQuery(
     graphql`
       query {
         wp {
-          allSettings {
-            generalSettingsTitle
-            generalSettingsDescription
+          generalSettings {
+            title
+            description
           }
         }
       }
     `
   )
 
-  const siteTitle = allSettings.generalSettingsTitle
+  const siteTitle = generalSettings.title
 
-  const metaDescription = description || allSettings.generalSettingsDescription
+  const metaDescription =
+    description || generalSettings.generalSettingsDescription
 
   return (
     <Helmet
