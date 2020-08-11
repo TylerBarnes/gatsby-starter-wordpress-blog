@@ -1,3 +1,8 @@
+// require .env.development or .env.production
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   plugins: [
     `gatsby-transformer-sharp`,
@@ -5,9 +10,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-wordpress`,
       options: {
-        url: `https://wpgatsbydemo.wpengine.com/graphql`,
+        url:
+          process.env.WPGRAPHQL_URL ||
+          `https://wpgatsbydemo.wpengine.com/graphql`,
         reports: {
           templateRouting: true,
+        },
+        debug: {
+          graphql: {
+            writeQueriesToDisk: true,
+          },
         },
         type: {
           Post: {
@@ -21,6 +33,7 @@ module.exports = {
         },
       },
     },
+    require.resolve(`../gatsby-wordpress-yoast-seo/package.json`),
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
